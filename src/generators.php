@@ -25,22 +25,6 @@ function range($start, $end, $step = 1)
 }
 
 /**
- * Returns generator, that applies function $func to the results of
- * previous $func call. If $func called the first time, it applied
- * to $initial.
- *
- * @param callable $func
- * @param mixed $initial
- * @return \Generator
- */
-function doWhile(callable $func, $initial = null)
-{
-    do {
-        yield $initial;
-    } while ($initial = $func($initial));
-}
-
-/**
  * Merges multiple generators into one generator.
  *
  * @param \Generator[] ...$generators

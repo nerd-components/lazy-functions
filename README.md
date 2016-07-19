@@ -10,11 +10,10 @@ A set of functions that works with iterators and generators like with lazy array
 ```php
 use KoteUtils\Lazy\Generators as G;
 
-$range = G\range(0, 6, 2); // Seq: 0, 2, 4, 6
+// Range Generators
+$range1 = G\range(0, 6, 2);
+$range2 = G\range(1, 5, 1);
 
-$doWhile = G\doWhile(function ($previous) { // Seq: 0, 1, 2, 3, 4, 5
-	return $previous > 5 ? null : $previous + 1;
-}, 0);
-
-$mergedGenerator = G\merge($range, $doWhile); // Seq: 0, 2, 4, 6, 0, 1, 2, 3, 4, 5
+// Merge Multiple Generators
+$range = G\merge($range1, $range2);
 ```

@@ -39,20 +39,6 @@ class GeneratorTest extends \PHPUnit_Framework_TestCase
         }
     }
 
-    public function testDoWhile()
-    {
-        $func = function ($value) {
-            if ($value == 4) {
-                return null;
-            }
-            return $value + 1;
-        };
-
-        $generator = G\doWhile($func, 0);
-
-        $this->assertEquals([0, 1, 2, 3, 4], R\toArray($generator));
-    }
-
     public function testMergeFunction()
     {
         $g1 = G\range(0, 5);

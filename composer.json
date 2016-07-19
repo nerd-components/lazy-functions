@@ -14,7 +14,10 @@
       "src/generators.php",
       "src/operators.php",
       "src/reducers.php"
-    ]
+    ],
+    "psr-4": {
+      "Tests\\": "tests"
+    }
   },
   "require-dev": {
     "phpunit/phpunit": "^5.4",
