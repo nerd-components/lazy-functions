@@ -2,7 +2,7 @@
 
 A set of functions that works with iterators and generators like with lazy arrays.
 
-## Generators
+## Lazy Generators
 ```php
 use KoteUtils\Lazy\Generators as G;
 
