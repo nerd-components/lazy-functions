@@ -56,7 +56,7 @@ function merge(\Generator ...$generators)
 }
 
 /**
- * Returns generator that reads data from stream.
+ * Returns generator that reads raw data from stream.
  *
  * @param resource $handle
  * @param int $buffer
@@ -66,5 +66,18 @@ function stream($handle, $buffer = 4096)
 {
     while ($data = fread($handle, $buffer)) {
         yield $data;
+    }
+}
+
+/**
+ * Returns generator that reads stream line by line.
+ *
+ * @param $handle
+ * @return \Generator
+ */
+function lines($handle)
+{
+    while ($line = fgets($handle)) {
+        yield $line;
     }
 }
