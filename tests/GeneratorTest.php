@@ -60,4 +60,17 @@ class GeneratorTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(range(0, 10), R\toArray(G\merge($g1, $g2)));
     }
+    
+    public function testStreamGenerator()
+    {
+        $handle = fopen(__DIR__.'/fixtures/stream.txt', 'r');
+        $generator = G\stream($handle, 5);
+
+        $this->assertEquals('Hello', $generator->current());
+        $generator->next();
+
+        $this->assertEquals('World', $generator->current());
+
+        fclose($handle);
+    }
 }
