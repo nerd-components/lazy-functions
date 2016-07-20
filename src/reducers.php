@@ -20,6 +20,20 @@ function reduce(callable $func, $initial, \Iterator $source)
 }
 
 /**
+ * Sends items to consumer.
+ *
+ * @param callable $consumer
+ * @param \Iterator $source
+ * @return void
+ */
+function consume(callable $consumer, \Iterator $source)
+{
+    foreach ($source as $item) {
+        $consumer($item);
+    }
+}
+
+/**
  * Tests whether all generated elements pass the test
  * implemented by the provided function.
  *
@@ -63,4 +77,24 @@ function some(callable $func, \Iterator $source)
 function toArray(\Iterator $source)
 {
     return iterator_to_array($source);
+}
+
+/**
+ * Converts generated sequence into string.
+ *
+ * @param \Iterator $source
+ * @return string
+ */
+function toString(\Iterator $source)
+{
+    $str = '(';
+
+    foreach ($source as $i => $item) {
+        if ($i != 0) {
+            $str .= ', ';
+        }
+        $str .= (string) $item;
+    }
+
+    return $str . ')';
 }

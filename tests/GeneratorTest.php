@@ -13,26 +13,26 @@ class GeneratorTest extends \PHPUnit_Framework_TestCase
 
         $this->assertInstanceOf(\Generator::class, $range);
 
-        $this->assertEquals([0, 1, 2, 3, 4, 5, 6, 7, 8, 9], R\toArray($range));
+        $this->assertEquals('(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)', R\toString($range));
     }
 
     public function testRangeGeneratorWithCustomStep()
     {
         $range = G\range(0, 9, 3);
 
-        $this->assertEquals([0, 3, 6, 9], R\toArray($range));
+        $this->assertEquals('(0, 3, 6, 9)', R\toString($range));
     }
 
     public function testRangeGeneratorException()
     {
         try {
-            G\range(10, 0)->next();
+            G\range(10, 0)->valid();
             $this->fail('Start could not be bigger than end.');
         } catch (\InvalidArgumentException $exception) {
             /* No operation */
         }
         try {
-            G\range(0, 1, -5)->next();
+            G\range(0, 1, -5)->valid();
             $this->fail('Step could not be negative.');
         } catch (\InvalidArgumentException $exception) {
             /* No operation */
@@ -44,7 +44,7 @@ class GeneratorTest extends \PHPUnit_Framework_TestCase
         $g1 = G\range(0, 5);
         $g2 = G\range(6, 10);
 
-        $this->assertEquals(range(0, 10), R\toArray(G\merge($g1, $g2)));
+        $this->assertEquals('(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10)', R\toString(G\merge($g1, $g2)));
     }
     
     public function testStreamGenerator()

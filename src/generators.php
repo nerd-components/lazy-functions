@@ -25,12 +25,12 @@ function range($start, $end, $step = 1)
 }
 
 /**
- * Merges multiple generators into one generator.
+ * Merges multiple iterators into one generator.
  *
- * @param \Generator[] ...$generators
+ * @param \Iterator[] ...$generators
  * @return \Generator
  */
-function merge(\Generator ...$generators)
+function merge(\Iterator ...$generators)
 {
     foreach ($generators as $generator) {
         foreach ($generator as $item) {
