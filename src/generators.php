@@ -25,6 +25,22 @@ function range($start, $end, $step = 1)
 }
 
 /**
+ * Returns generator that calls $producer as long as it does not return null.
+ * It can be used as infinity generator. As argument $producer receives result
+ * of previous call. If $producer called first time it receives $initial as argument.
+ *
+ * @param callable $producer
+ * @param null $initial
+ * @return \Generator
+ */
+function produce(callable $producer, $initial = null)
+{
+    while (!is_null($initial = $producer($initial))) {
+        yield $initial;
+    };
+}
+
+/**
  * Merges multiple iterators into one generator.
  *
  * @param \Iterator[] ...$generators

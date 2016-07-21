@@ -34,41 +34,6 @@ function consume(callable $consumer, \Iterator $source)
 }
 
 /**
- * Tests whether all generated elements pass the test
- * implemented by the provided function.
- *
- * @param callable $func
- * @param \Iterator $source
- * @return bool
- */
-function every(callable $func, \Iterator $source)
-{
-    foreach ($source as $item) {
-        if (! $func($item)) {
-            return false;
-        }
-    }
-    return true;
-}
-
-/**
- * Tests whether some generated element passes the test implemented by the provided function.
- *
- * @param callable $func
- * @param \Iterator $source
- * @return bool
- */
-function some(callable $func, \Iterator $source)
-{
-    foreach ($source as $item) {
-        if ($func($item)) {
-            return true;
-        }
-    }
-    return false;
-}
-
-/**
  * Converts generated sequence into array.
  *
  * @param \Iterator $source
