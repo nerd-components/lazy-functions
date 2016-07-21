@@ -25,7 +25,7 @@ function range($start, $end, $step = 1)
 }
 
 /**
- * Returns generator that calls $producer as long as it does not return null.
+ * Returns generator that calls $producer as long as it returns non-null value.
  * It can be used as infinity generator. As argument $producer receives result
  * of previous call. If $producer called first time it receives $initial as argument.
  *
