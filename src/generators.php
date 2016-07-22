@@ -58,13 +58,13 @@ function merge(\Iterator ...$generators)
 /**
  * Returns generator that reads raw data from stream.
  *
- * @param resource $handle
+ * @param resource $fh
  * @param int $buffer
  * @return \Generator
  */
-function stream($handle, $buffer = 4096)
+function stream($fh, $buffer = 4096)
 {
-    while ($data = fread($handle, $buffer)) {
+    while ($data = fread($fh, $buffer)) {
         yield $data;
     }
 }
@@ -72,12 +72,12 @@ function stream($handle, $buffer = 4096)
 /**
  * Returns generator that reads stream line by line.
  *
- * @param $handle
+ * @param $fh
  * @return \Generator
  */
-function lines($handle)
+function lines($fh)
 {
-    while ($line = fgets($handle)) {
-        yield $line;
+    while ($line = fgets($fh)) {
+        yield rtrim($line);
     }
 }

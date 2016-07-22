@@ -9,11 +9,11 @@ class GeneratorTest extends \PHPUnit_Framework_TestCase
 {
     public function testRangeGenerator()
     {
-        $range = G\range(0, 9);
+        $range = G\range(0, 4);
 
         $this->assertInstanceOf(\Generator::class, $range);
 
-        $this->assertEquals('(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)', R\toString($range));
+        $this->assertEquals('(0, 1, 2, 3, 4)', R\toString($range));
     }
 
     public function testRangeGeneratorWithCustomStep()
@@ -41,22 +41,39 @@ class GeneratorTest extends \PHPUnit_Framework_TestCase
 
     public function testMergeFunction()
     {
-        $g1 = G\range(0, 5);
-        $g2 = G\range(6, 10);
+        $g1 = G\range(0, 2);
+        $g2 = G\range(3, 5);
+        $merged = G\merge($g1, $g2);
 
-        $this->assertEquals('(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10)', R\toString(G\merge($g1, $g2)));
+        $this->assertEquals('(0, 1, 2, 3, 4, 5)', R\toString($merged));
     }
     
     public function testStreamGenerator()
     {
-        $handle = fopen(__DIR__.'/fixtures/stream.txt', 'r');
-        $generator = G\stream($handle, 5);
+        $fh = fopen(__DIR__.'/fixtures/stream.txt', 'r');
 
-        $this->assertEquals('Hello', $generator->current());
+        $generator = G\stream($fh);
+
+        $this->assertEquals('Hello, World!', $generator->current());
+
+        fclose($fh);
+    }
+
+    public function testLinesGenerator()
+    {
+        $fh = fopen(__DIR__.'/fixtures/lines.txt', 'r');
+
+        $generator = G\lines($fh);
+
+        $this->assertEquals('foo', $generator->current());
+        $generator->next();
+        $this->assertEquals('bar', $generator->current());
+        $generator->next();
+        $this->assertEquals('baz', $generator->current());
         $generator->next();
 
-        $this->assertEquals('World', $generator->current());
+        $this->assertFalse($generator->valid());
 
-        fclose($handle);
+        fclose($fh);
     }
 }
