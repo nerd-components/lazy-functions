@@ -81,6 +81,17 @@ function skip($amount, \Iterator $source)
 }
 
 /**
+ * Skips first generated item.
+ *
+ * @param \Iterator $source
+ * @return \Generator
+ */
+function tail(\Iterator $source)
+{
+    return skip(1, $source);
+}
+
+/**
  * Calls the given function $with pairwise on each member of both iterators
  * and returns generator of call results. If one of iterators contains
  * more elements than other, null will be used as lacking element.

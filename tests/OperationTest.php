@@ -94,4 +94,23 @@ class OperationTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals('((0, 1), (1, 2), (2, 3), (3, 4), (4, 5))', R\toString($result));
     }
+
+    public function testZipUsingFibonacci()
+    {
+        $sum = function ($a, $b) {
+            return $a + $b;
+        };
+
+        $fbGen = function () use (&$fbGen, &$sum) {
+            yield 1;
+            yield 1;
+            foreach (O\zipWith($sum, $fbGen(), O\tail($fbGen())) as $i) {
+                yield $i;
+            }
+        };
+
+        $sequence = O\take(10, $fbGen());
+
+        $this->assertEquals([1, 1, 2, 3, 5, 8, 13, 21, 34, 55], R\toArray($sequence));
+    }
 }
