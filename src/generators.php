@@ -1,6 +1,6 @@
 <?php
 
-namespace KoteUtils\Lazy\Generators;
+namespace RG\Lazy\Generators;
 
 const STREAM_BUFFER_SIZE = 4096;
 

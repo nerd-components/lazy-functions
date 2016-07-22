@@ -2,9 +2,9 @@
 
 namespace Tests;
 
-use KoteUtils\Lazy\Generators as G;
-use KoteUtils\Lazy\Operations as O;
-use KoteUtils\Lazy\Reducers as R;
+use RG\Lazy\Generators as G;
+use RG\Lazy\Operations as O;
+use RG\Lazy\Reducers as R;
 
 class OperationTest extends \PHPUnit_Framework_TestCase
 {

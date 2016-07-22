@@ -6,14 +6,37 @@
 
 A set of functions that works with iterators and generators like with lazy arrays.
 
+## Functions
+```php
+\RG\Lazy\Generators\range($from, $to, $step = 1): \Generator;
+\RG\Lazy\Generators\produce(callable $producer, $initial = null): \Generator;
+\RG\Lazy\Generators\merge(\Iterator ...$generators): \Generator;
+\RG\Lazy\Generators\stream($fh, $buffer = STREAM_BUFFER_SIZE): \Generator;
+\RG\Lazy\Generators\lines($fh): \Generator;
+
+\RG\Lazy\Operations\map(callable $func, \Iterator $source): \Generator;
+\RG\Lazy\Operations\filter(callable $func, \Iterator $source): \Generator;
+\RG\Lazy\Operations\reject(callable $func, \Iterator $source): \Generator;
+\RG\Lazy\Operations\take($amount, \Iterator $source): \Generator;
+\RG\Lazy\Operations\skip($amount, \Iterator $source): \Generator;
+\RG\Lazy\Operations\tail(\Iterator $source): \Generator;
+\RG\Lazy\Operations\zipWith(callable $with, \Iterator $source1, \Iterator $source2): \Generator;
+\RG\Lazy\Operations\zip(\Iterator $source1, \Iterator $source2): \Generator;
+
+\RG\Lazy\Reducers\reduce(callable $func, $initial, \Iterator $source): mixed;
+\RG\Lazy\Reducers\consume(callable $consumer, \Iterator $source): void;
+\RG\Lazy\Reducers\toArray(\Iterator $source): array;
+\RG\Lazy\Reducers\toString(\Iterator $source): string;
+```
+
 ## Lazy Generators
 ```php
-use KoteUtils\Lazy\Generators as G;
+use RG\Lazy\Generators as G;
 
-// Range Generators
-$range1 = G\range(0, 6, 2);
-$range2 = G\range(1, 5, 1);
+// Range generators
+$range1 = G\range(0, 6);
+$range2 = G\range(1, 5, 2);
 
-// Merge Multiple Generators
+// Merge multiple generators
 $range = G\merge($range1, $range2);
 ```

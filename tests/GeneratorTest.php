@@ -2,8 +2,8 @@
 
 namespace Tests;
 
-use KoteUtils\Lazy\Generators as G;
-use KoteUtils\Lazy\Reducers as R;
+use RG\Lazy\Generators as G;
+use RG\Lazy\Reducers as R;
 
 class GeneratorTest extends \PHPUnit_Framework_TestCase
 {

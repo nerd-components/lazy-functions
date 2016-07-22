@@ -1,6 +1,6 @@
 <?php
 
-namespace KoteUtils\Lazy\Reducers;
+namespace RG\Lazy\Reducers;
 
 /**
  * @param callable $func
