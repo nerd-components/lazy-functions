@@ -7,7 +7,7 @@ namespace RG\Lazy\Operations;
  * @param \Iterator $source
  * @return \Generator
  */
-function map(callable $func, \Iterator $source)
+function map(callable $func, \Iterator $source): \Generator
 {
     foreach ($source as $item) {
         yield $func($item);
@@ -19,7 +19,7 @@ function map(callable $func, \Iterator $source)
  * @param \Iterator $source
  * @return \Generator
  */
-function filter(callable $func, \Iterator $source)
+function filter(callable $func, \Iterator $source): \Generator
 {
     foreach ($source as $item) {
         if ($func($item)) {
@@ -33,7 +33,7 @@ function filter(callable $func, \Iterator $source)
  * @param \Iterator $source
  * @return \Generator
  */
-function reject(callable $func, \Iterator $source)
+function reject(callable $func, \Iterator $source): \Generator
 {
     foreach ($source as $item) {
         if (!$func($item)) {
@@ -49,7 +49,7 @@ function reject(callable $func, \Iterator $source)
  * @param \Iterator $source
  * @return \Generator
  */
-function take($amount, \Iterator $source)
+function take(int $amount, \Iterator $source): \Generator
 {
     foreach ($source as $item) {
         if ($amount <= 0) {
@@ -68,7 +68,7 @@ function take($amount, \Iterator $source)
  * @param \Iterator $source
  * @return \Generator
  */
-function skip($amount, \Iterator $source)
+function skip(int $amount, \Iterator $source): \Generator
 {
     foreach ($source as $item) {
         if ($amount > 0) {
@@ -86,7 +86,7 @@ function skip($amount, \Iterator $source)
  * @param \Iterator $source
  * @return \Generator
  */
-function tail(\Iterator $source)
+function tail(\Iterator $source): \Generator
 {
     return skip(1, $source);
 }
@@ -101,7 +101,7 @@ function tail(\Iterator $source)
  * @param \Iterator $source2
  * @return \Generator
  */
-function zipWith(callable $with, \Iterator $source1, \Iterator $source2)
+function zipWith(callable $with, \Iterator $source1, \Iterator $source2): \Generator
 {
     while ($source1->valid() || $source2->valid()) {
         yield $with($source1->current(), $source2->current());
@@ -119,7 +119,7 @@ function zipWith(callable $with, \Iterator $source1, \Iterator $source2)
  * @param \Iterator $source2
  * @return \Generator
  */
-function zip(\Iterator $source1, \Iterator $source2)
+function zip(\Iterator $source1, \Iterator $source2): \Generator
 {
     $with = function ($a, $b) {
         return [$a, $b];

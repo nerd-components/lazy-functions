@@ -13,7 +13,7 @@ const STREAM_BUFFER_SIZE = 4096;
  * @return \Generator
  * @throws \InvalidArgumentException
  */
-function range($start, $end, $step = 1)
+function range(int $start, int $end, int $step = 1): \Generator
 {
     if ($step < 0) {
         throw new \InvalidArgumentException("Step could not be negative.");
@@ -32,10 +32,10 @@ function range($start, $end, $step = 1)
  * of previous call. If $producer called first time it receives $initial as argument.
  *
  * @param callable $producer
- * @param null $initial
+ * @param mixed $initial
  * @return \Generator
  */
-function produce(callable $producer, $initial = null)
+function produce(callable $producer, $initial = null): \Generator
 {
     while (!is_null($initial = $producer($initial))) {
         yield $initial;
@@ -48,7 +48,7 @@ function produce(callable $producer, $initial = null)
  * @param \Iterator[] ...$iterators
  * @return \Generator
  */
-function merge(\Iterator ...$iterators)
+function merge(\Iterator ...$iterators): \Generator
 {
     foreach ($iterators as $generator) {
         foreach ($generator as $item) {
@@ -64,7 +64,7 @@ function merge(\Iterator ...$iterators)
  * @param int $buffer
  * @return \Generator
  */
-function stream($fh, $buffer = STREAM_BUFFER_SIZE)
+function stream($fh, $buffer = STREAM_BUFFER_SIZE): \Generator
 {
     while ($data = fread($fh, $buffer)) {
         yield $data;
@@ -77,7 +77,7 @@ function stream($fh, $buffer = STREAM_BUFFER_SIZE)
  * @param $fh
  * @return \Generator
  */
-function lines($fh)
+function lines($fh): \Generator
 {
     while ($line = fgets($fh)) {
         yield rtrim($line);
