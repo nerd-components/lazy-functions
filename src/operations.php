@@ -1,6 +1,6 @@
 <?php
 
-namespace KoteUtils\Lazy\Operators;
+namespace KoteUtils\Lazy\Operations;
 
 /**
  * @param callable $func

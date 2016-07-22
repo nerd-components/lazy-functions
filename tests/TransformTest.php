@@ -2,7 +2,7 @@
 
 namespace Tests;
 
-use KoteUtils\Lazy\Operators as O;
+use KoteUtils\Lazy\Operations as O;
 use KoteUtils\Lazy\Reducers as R;
 
 class TransformTest extends \PHPUnit_Framework_TestCase
