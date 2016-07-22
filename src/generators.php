@@ -2,6 +2,8 @@
 
 namespace KoteUtils\Lazy\Generators;
 
+const STREAM_BUFFER_SIZE = 4096;
+
 /**
  * Returns generator of integers with optional step.
  *
@@ -62,7 +64,7 @@ function merge(\Iterator ...$generators)
  * @param int $buffer
  * @return \Generator
  */
-function stream($fh, $buffer = 4096)
+function stream($fh, $buffer = STREAM_BUFFER_SIZE)
 {
     while ($data = fread($fh, $buffer)) {
         yield $data;

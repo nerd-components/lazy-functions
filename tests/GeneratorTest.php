@@ -76,4 +76,15 @@ class GeneratorTest extends \PHPUnit_Framework_TestCase
 
         fclose($fh);
     }
+
+    public function testProducerGenerator()
+    {
+        $incremental = function ($prev) {
+            return $prev > 4 ? null : $prev + 1;
+        };
+
+        $generator = G\produce($incremental, 0);
+
+        $this->assertEquals('(1, 2, 3, 4, 5)', R\toString($generator));
+    }
 }

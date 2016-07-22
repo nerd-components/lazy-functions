@@ -20,7 +20,7 @@ function reduce(callable $func, $initial, \Iterator $source)
 }
 
 /**
- * Sends items to consumer.
+ * Sends generated items to consumer.
  *
  * @param callable $consumer
  * @param \Iterator $source

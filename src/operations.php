@@ -41,3 +41,41 @@ function reject(callable $func, \Iterator $source)
         }
     }
 }
+
+/**
+ * Takes a few first generated items.
+ *
+ * @param int $amount
+ * @param \Iterator $source
+ * @return \Generator
+ */
+function take($amount, \Iterator $source)
+{
+    foreach ($source as $item) {
+        if ($amount <= 0) {
+            break;
+        }
+        $amount --;
+
+        yield $item;
+    }
+}
+
+/**
+ * Skips a few first generated items.
+ *
+ * @param int $amount
+ * @param \Iterator $source
+ * @return \Generator
+ */
+function skip($amount, \Iterator $source)
+{
+    foreach ($source as $item) {
+        if ($amount > 0) {
+            $amount --;
+            continue;
+        }
+
+        yield $item;
+    }
+}
