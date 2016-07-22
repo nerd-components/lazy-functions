@@ -1,6 +1,6 @@
 {
   "name": "pldin601/php-lazy",
-  "description": "A set of functions that transforms iterators and generators like lazy arrays",
+  "description": "A set of functions to work with iterators and generators like with lazy arrays.",
   "minimum-stability": "dev",
   "license": "MIT",
   "authors": [
