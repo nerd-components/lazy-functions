@@ -86,7 +86,9 @@ class OperationTest extends \PHPUnit_Framework_TestCase
     {
         $g1 = G\range(0, 4);
         $g2 = G\range(1, 5);
-        $glue = function ($a, $b) { return "($a, $b)"; };
+        $glue = function ($a, $b) {
+            return "($a, $b)";
+        };
 
         $result = O\zipWith($glue, $g1, $g2);
 

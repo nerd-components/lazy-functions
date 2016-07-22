@@ -81,6 +81,10 @@ function skip($amount, \Iterator $source)
 }
 
 /**
+ * Calls the given function $with pairwise on each member of both iterators
+ * and returns generator of call results. If one of iterators contains
+ * more elements than other, null will be used as lacking element.
+ *
  * @param callable $with
  * @param \Iterator $source1
  * @param \Iterator $source2
@@ -90,19 +94,25 @@ function zipWith(callable $with, \Iterator $source1, \Iterator $source2)
 {
     while ($source1->valid() || $source2->valid()) {
         yield $with($source1->current(), $source2->current());
+
         $source1->next();
         $source2->next();
     }
 }
 
 /**
+ * Returns generator of arrays, where each next array contains
+ * each next element from each of the iterators.
+ *
  * @param \Iterator $source1
  * @param \Iterator $source2
  * @return \Generator
  */
 function zip(\Iterator $source1, \Iterator $source2)
 {
-    $with = function ($a, $b) { return [$a, $b]; };
+    $with = function ($a, $b) {
+        return [$a, $b];
+    };
 
     return zipWith($with, $source1, $source2);
 }
