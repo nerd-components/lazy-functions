@@ -3,8 +3,12 @@
 namespace RG\Lazy\Operations;
 
 /**
- * @param callable $func
- * @param \Iterator $source
+ * Applies the function to the elements of the given iterator.
+ *
+ * @param callable $func Function to be used to transform generating items.
+ *
+ * @param \Iterator $source Iterator to run through the function.
+ *
  * @return \Generator
  */
 function map(callable $func, \Iterator $source): \Generator
@@ -15,8 +19,12 @@ function map(callable $func, \Iterator $source): \Generator
 }
 
 /**
- * @param callable $func
- * @param \Iterator $source
+ * Filters elements of an iterator using a callback function.
+ *
+ * @param callable $func The callback function to use.
+ *
+ * @param \Iterator $source The source to iterate over.
+ *
  * @return \Generator
  */
 function filter(callable $func, \Iterator $source): \Generator
@@ -29,8 +37,12 @@ function filter(callable $func, \Iterator $source): \Generator
 }
 
 /**
- * @param callable $func
- * @param \Iterator $source
+ * Rejects elements of an iterator using a callback function.
+ *
+ * @param callable $func The callback function to use.
+ *
+ * @param \Iterator $source The source to iterate over.
+ *
  * @return \Generator
  */
 function reject(callable $func, \Iterator $source): \Generator
@@ -45,8 +57,10 @@ function reject(callable $func, \Iterator $source): \Generator
 /**
  * Takes a few first generated items.
  *
- * @param int $amount
- * @param \Iterator $source
+ * @param int $amount How many items must be taken.
+ *
+ * @param \Iterator $source The source to take from.
+ *
  * @return \Generator
  */
 function take(int $amount, \Iterator $source): \Generator
@@ -64,8 +78,10 @@ function take(int $amount, \Iterator $source): \Generator
 /**
  * Skips a few first generated items.
  *
- * @param int $amount
- * @param \Iterator $source
+ * @param int $amount How many items must be skipped.
+ *
+ * @param \Iterator $source The source to iterate over.
+ *
  * @return \Generator
  */
 function skip(int $amount, \Iterator $source): \Generator
@@ -83,7 +99,8 @@ function skip(int $amount, \Iterator $source): \Generator
 /**
  * Skips first generated item.
  *
- * @param \Iterator $source
+ * @param \Iterator $source The source to iterate over.
+ *
  * @return \Generator
  */
 function tail(\Iterator $source): \Generator
@@ -96,9 +113,12 @@ function tail(\Iterator $source): \Generator
  * and returns generator of call results. If one of iterators contains
  * more elements than other, null will be used as lacking element.
  *
- * @param callable $with
- * @param \Iterator $source1
- * @param \Iterator $source2
+ * @param callable $with Function used to merge zipping items.
+ *
+ * @param \Iterator $source1 First source.
+ *
+ * @param \Iterator $source2 Second source.
+ *
  * @return \Generator
  */
 function zipWith(callable $with, \Iterator $source1, \Iterator $source2): \Generator
@@ -115,8 +135,10 @@ function zipWith(callable $with, \Iterator $source1, \Iterator $source2): \Gener
  * Returns generator of arrays, where each next array contains
  * each next element from each of the iterators.
  *
- * @param \Iterator $source1
- * @param \Iterator $source2
+ * @param \Iterator $source1 First source.
+ *
+ * @param \Iterator $source2 Second source.
+ *
  * @return \Generator
  */
 function zip(\Iterator $source1, \Iterator $source2): \Generator

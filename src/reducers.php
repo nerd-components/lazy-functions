@@ -3,10 +3,18 @@
 namespace RG\Lazy\Reducers;
 
 /**
- * @param callable $func
- * @param mixed $initial
- * @param \Iterator $source
- * @return mixed
+ * Applies a function against an accumulator and each value of
+ * the generator to reduce it to a single value.
+ *
+ * @param callable $func Callback function to execute on
+ * each value in the array.
+ *
+ * @param mixed $initial Value to use as the first argument to the
+ * first call of the callback.
+ *
+ * @param \Iterator $source The source reduce was called upon.
+ *
+ * @return mixed The value that results from the reduction.
  */
 function reduce(callable $func, $initial, \Iterator $source)
 {
@@ -20,10 +28,13 @@ function reduce(callable $func, $initial, \Iterator $source)
 }
 
 /**
- * Sends generated items to consumer.
+ * Sends generated items to function-consumer.
  *
- * @param callable $consumer
- * @param \Iterator $source
+ * @param callable $consumer Callback function used to consume
+ * generated items.
+ *
+ * @param \Iterator $source Source sequence of generated items.
+ *
  * @return void
  */
 function consume(callable $consumer, \Iterator $source)
@@ -36,8 +47,9 @@ function consume(callable $consumer, \Iterator $source)
 /**
  * Converts generated sequence into array.
  *
- * @param \Iterator $source
- * @return array
+ * @param \Iterator $source Source sequence to convert into array.
+ *
+ * @return array Resulting array.
  */
 function toArray(\Iterator $source): array
 {
@@ -47,8 +59,9 @@ function toArray(\Iterator $source): array
 /**
  * Converts generated sequence into string.
  *
- * @param \Iterator $source
- * @return string
+ * @param \Iterator $source Source sequence to convert into string.
+ *
+ * @return string Resulting string.
  */
 function toString(\Iterator $source): string
 {

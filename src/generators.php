@@ -5,13 +5,16 @@ namespace RG\Lazy\Generators;
 const STREAM_BUFFER_SIZE = 4096;
 
 /**
- * Returns generator of integers with optional step.
+ * Returns generator with range of elements.
  *
  * @param int $start First value of the sequence.
+ *
  * @param int $end The sequence is ended upon reaching end value.
+ *
  * @param int $step If a step value is given, it will be used
  * as the increment between elements in the sequence. Step should be
  * given as a positive number. If not specified, step will default to 1.
+ *
  * @return \Generator
  * @throws \InvalidArgumentException
  */
@@ -30,11 +33,14 @@ function range(int $start, int $end, int $step = 1): \Generator
 
 /**
  * Returns generator that calls $producer as long as it returns non-null value.
- * It can be used as infinity generator. As argument $producer receives result
- * of previous call. If $producer called first time it receives $initial as argument.
+ * It can be used as infinity generator. As argument $producer receives result of previous
+ * $producer call. If $producer called first time it receives $initial as argument.
  *
- * @param callable $producer
- * @param mixed $initial
+ * @param callable $producer Function that used to produce items.
+ *
+ * @param mixed $initial Optional value that will be used as the argument
+ * when producing first item.
+ *
  * @return \Generator
  */
 function produce(callable $producer, $initial = null): \Generator
@@ -47,7 +53,9 @@ function produce(callable $producer, $initial = null): \Generator
 /**
  * Merges multiple iterators into one generator.
  *
- * @param \Iterator[] ...$iterators
+ * @param \Iterator[] ...$iterators List of iterators that will be
+ * merged into single generator.
+ *
  * @return \Generator
  */
 function merge(\Iterator ...$iterators): \Generator
@@ -62,8 +70,10 @@ function merge(\Iterator ...$iterators): \Generator
 /**
  * Returns generator that reads raw data from stream.
  *
- * @param resource $fh
- * @param int $buffer
+ * @param resource $fh File handle to read data from.
+ *
+ * @param int $buffer Buffer size which will be used when reading data.
+ *
  * @return \Generator
  */
 function stream($fh, $buffer = STREAM_BUFFER_SIZE): \Generator
@@ -76,7 +86,10 @@ function stream($fh, $buffer = STREAM_BUFFER_SIZE): \Generator
 /**
  * Returns generator that reads stream line by line.
  *
- * @param $fh
+ * Notice: Each line is right trimmed.
+ *
+ * @param resource $fh File handle to read data from.
+ *
  * @return \Generator
  */
 function lines($fh): \Generator
