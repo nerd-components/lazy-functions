@@ -15,3 +15,6 @@ report:
 
 lint:
 	composer exec 'phpcs --standard=PSR2 src tests'
+
+doc:
+	composer exec phpdoc

@@ -85,3 +85,4 @@ function lines($fh): \Generator
         yield rtrim($line);
     }
 }
+
