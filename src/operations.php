@@ -79,3 +79,30 @@ function skip($amount, \Iterator $source)
         yield $item;
     }
 }
+
+/**
+ * @param callable $with
+ * @param \Iterator $source1
+ * @param \Iterator $source2
+ * @return \Generator
+ */
+function zipWith(callable $with, \Iterator $source1, \Iterator $source2)
+{
+    while ($source1->valid() || $source2->valid()) {
+        yield $with($source1->current(), $source2->current());
+        $source1->next();
+        $source2->next();
+    }
+}
+
+/**
+ * @param \Iterator $source1
+ * @param \Iterator $source2
+ * @return \Generator
+ */
+function zip(\Iterator $source1, \Iterator $source2)
+{
+    $with = function ($a, $b) { return [$a, $b]; };
+
+    return zipWith($with, $source1, $source2);
+}

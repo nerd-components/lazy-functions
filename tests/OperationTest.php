@@ -61,4 +61,35 @@ class OperationTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals('(2, 3, 4)', R\toString($result));
     }
+
+    public function testZip()
+    {
+        $g1 = G\range(0, 4);
+        $g2 = G\range(1, 5);
+
+        $result = O\zip($g1, $g2);
+
+        $this->assertEquals([0, 1], $result->current());
+        $result->next();
+        $this->assertEquals([1, 2], $result->current());
+        $result->next();
+        $this->assertEquals([2, 3], $result->current());
+        $result->next();
+        $this->assertEquals([3, 4], $result->current());
+        $result->next();
+        $this->assertEquals([4, 5], $result->current());
+        $result->next();
+        $this->assertFalse($result->valid());
+    }
+
+    public function testZipWith()
+    {
+        $g1 = G\range(0, 4);
+        $g2 = G\range(1, 5);
+        $glue = function ($a, $b) { return "($a, $b)"; };
+
+        $result = O\zipWith($glue, $g1, $g2);
+
+        $this->assertEquals('((0, 1), (1, 2), (2, 3), (3, 4), (4, 5))', R\toString($result));
+    }
 }
