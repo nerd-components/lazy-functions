@@ -45,12 +45,12 @@ function produce(callable $producer, $initial = null)
 /**
  * Merges multiple iterators into one generator.
  *
- * @param \Iterator[] ...$generators
+ * @param \Iterator[] ...$iterators
  * @return \Generator
  */
-function merge(\Iterator ...$generators)
+function merge(\Iterator ...$iterators)
 {
-    foreach ($generators as $generator) {
+    foreach ($iterators as $generator) {
         foreach ($generator as $item) {
             yield $item;
         }
