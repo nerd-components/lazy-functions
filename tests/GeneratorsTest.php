@@ -5,7 +5,7 @@ namespace Tests;
 use RG\Lazy\Generators as G;
 use RG\Lazy\Reducers as R;
 
-class GeneratorTest extends \PHPUnit_Framework_TestCase
+class GeneratorsTest extends \PHPUnit_Framework_TestCase
 {
     public function testRangeGenerator()
     {
