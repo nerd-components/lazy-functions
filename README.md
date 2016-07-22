@@ -28,15 +28,3 @@ A set of functions that works with iterators and generators like with lazy array
 \RG\Lazy\Reducers\toArray(\Iterator $source): array;
 \RG\Lazy\Reducers\toString(\Iterator $source): string;
 ```
-
-## Lazy Generators
-```php
-use RG\Lazy\Generators as G;
-
-// Range generators
-$range1 = G\range(0, 6);
-$range2 = G\range(1, 5, 2);
-
-// Merge multiple generators
-$range = G\merge($range1, $range2);
-```
