@@ -104,13 +104,11 @@ class OperationTest extends \PHPUnit_Framework_TestCase
         $fbGen = function () use (&$fbGen, &$sum) {
             yield 1;
             yield 1;
-            foreach (O\zipWith($sum, $fbGen(), O\tail($fbGen())) as $i) {
-                yield $i;
-            }
+            yield from O\zipWith($sum, $fbGen(), O\tail($fbGen()));
         };
 
         $sequence = O\take(10, $fbGen());
 
-        $this->assertEquals([1, 1, 2, 3, 5, 8, 13, 21, 34, 55], R\toArray($sequence));
+        $this->assertEquals('(1, 1, 2, 3, 5, 8, 13, 21, 34, 55)', R\toString($sequence));
     }
 }
