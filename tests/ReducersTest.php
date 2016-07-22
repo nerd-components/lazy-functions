@@ -32,4 +32,17 @@ class ReducersTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(10, $result);
     }
+
+    public function testConsume()
+    {
+        $result = 0;
+
+        $consumer = function ($item) use (&$result) {
+            $result += $item;
+        };
+
+        R\consume($consumer, $this->generator);
+
+        $this->assertEquals(10, $result);
+    }
 }

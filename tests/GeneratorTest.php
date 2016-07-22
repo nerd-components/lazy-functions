@@ -56,6 +56,10 @@ class GeneratorTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals('Hello, World!', $generator->current());
 
+        $generator->next();
+
+        $this->assertFalse($generator->valid());
+
         fclose($fh);
     }
 
