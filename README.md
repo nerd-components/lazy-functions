@@ -4,6 +4,8 @@
 [![Test Coverage](https://codeclimate.com/github/pldin601/php-lazy/badges/coverage.svg)](https://codeclimate.com/github/pldin601/php-lazy/coverage)
 [![Issue Count](https://codeclimate.com/github/pldin601/php-lazy/badges/issue_count.svg)](https://codeclimate.com/github/pldin601/php-lazy)
 
+[Documentation](http://github.com/pldin601/php-lazy/wiki/)
+
 A set of functions that works with iterators and generators like with lazy arrays.
 
 ## Functions
