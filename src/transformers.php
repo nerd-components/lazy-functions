@@ -1,6 +1,6 @@
 <?php
 
-namespace RG\Lazy\Operations;
+namespace RG\Lazy\Transformers;
 
 /**
  * Applies the function to the elements of the given iterator.
@@ -13,8 +13,8 @@ namespace RG\Lazy\Operations;
  */
 function map(callable $func, \Iterator $source): \Generator
 {
-    foreach ($source as $item) {
-        yield $func($item);
+    foreach ($source as $i => $item) {
+        yield $func($item, $i, $source);
     }
 }
 
@@ -29,8 +29,8 @@ function map(callable $func, \Iterator $source): \Generator
  */
 function filter(callable $func, \Iterator $source): \Generator
 {
-    foreach ($source as $item) {
-        if ($func($item)) {
+    foreach ($source as $i => $item) {
+        if ($func($item, $i, $source)) {
             yield $item;
         }
     }
@@ -47,8 +47,8 @@ function filter(callable $func, \Iterator $source): \Generator
  */
 function reject(callable $func, \Iterator $source): \Generator
 {
-    foreach ($source as $item) {
-        if (!$func($item)) {
+    foreach ($source as $i => $item) {
+        if (!$func($item, $i, $source)) {
             yield $item;
         }
     }

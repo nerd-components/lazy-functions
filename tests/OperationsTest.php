@@ -3,7 +3,7 @@
 namespace Tests;
 
 use RG\Lazy\Generators as G;
-use RG\Lazy\Operations as O;
+use RG\Lazy\Transformers as O;
 use RG\Lazy\Reducers as R;
 
 class OperationsTest extends \PHPUnit_Framework_TestCase

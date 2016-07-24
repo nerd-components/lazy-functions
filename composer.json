@@ -12,8 +12,9 @@
   "autoload": {
     "files": [
       "src/generators.php",
-      "src/operations.php",
-      "src/reducers.php"
+      "src/transformers.php",
+      "src/reducers.php",
+      "src/arrays.php"
     ],
     "psr-4": {
       "Tests\\": "tests"

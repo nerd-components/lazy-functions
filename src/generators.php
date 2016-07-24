@@ -2,6 +2,8 @@
 
 namespace RG\Lazy\Generators;
 
+use function RG\Arrays\array_some;
+
 const STREAM_BUFFER_SIZE = 4096;
 
 /**
@@ -23,9 +25,7 @@ function range(int $start, int $end, int $step = 1): \Generator
     if ($step < 0) {
         throw new \InvalidArgumentException("Step could not be negative.");
     }
-    if ($start > $end) {
-        throw new \InvalidArgumentException("Start could not be greater than end.");
-    }
+
     for ($i = $start; $i <= $end; $i += $step) {
         yield $i;
     }
@@ -34,7 +34,7 @@ function range(int $start, int $end, int $step = 1): \Generator
 /**
  * Returns generator that calls $producer as long as it returns non-null value.
  * It can be used as infinity generator. As argument $producer receives result of previous
- * $producer call. If $producer called first time it receives $initial as argument.
+ * $producer's call. If $producer called for first time it receives $initial as argument.
  *
  * @param callable $producer Function that used to produce items.
  *
@@ -60,9 +60,28 @@ function produce(callable $producer, $initial = null): \Generator
  */
 function merge(\Iterator ...$iterators): \Generator
 {
-    foreach ($iterators as $generator) {
-        foreach ($generator as $item) {
+    foreach ($iterators as $iterator) {
+//        yield from $iterator;
+        foreach ($iterator as $item) {
             yield $item;
+        }
+    }
+}
+
+/**
+ * @param \Iterator[] ...$iterators
+ * @return \Generator
+ */
+function interlace(\Iterator ...$iterators): \Generator
+{
+    $isIteratorValid = function (\Iterator $iterator) {
+        return $iterator->valid();
+    };
+
+    while (array_some($iterators, $isIteratorValid)) {
+        foreach ($iterators as $iterator) {
+            yield $iterator->current();
+            $iterator->next();
         }
     }
 }

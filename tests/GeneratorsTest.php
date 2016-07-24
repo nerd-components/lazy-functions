@@ -26,12 +26,6 @@ class GeneratorsTest extends \PHPUnit_Framework_TestCase
     public function testRangeGeneratorException()
     {
         try {
-            G\range(10, 0)->valid();
-            $this->fail('Start could not be bigger than end.');
-        } catch (\InvalidArgumentException $exception) {
-            /* No operation */
-        }
-        try {
             G\range(0, 1, -5)->valid();
             $this->fail('Step could not be negative.');
         } catch (\InvalidArgumentException $exception) {
@@ -46,6 +40,15 @@ class GeneratorsTest extends \PHPUnit_Framework_TestCase
         $merged = G\merge($g1, $g2);
 
         $this->assertEquals('(0, 1, 2, 3, 4, 5)', R\toString($merged));
+    }
+
+    public function testInterlaceFunction()
+    {
+        $g1 = G\range(0, 2);
+        $g2 = G\range(3, 5);
+        $combined = G\interlace($g1, $g2);
+
+        $this->assertEquals('(0, 3, 1, 4, 2, 5)', R\toString($combined));
     }
     
     public function testStreamGenerator()
