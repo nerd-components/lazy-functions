@@ -80,8 +80,10 @@ function interlace(\Iterator ...$iterators): \Generator
 
     while (array_some($iterators, $isIteratorValid)) {
         foreach ($iterators as $iterator) {
-            yield $iterator->current();
-            $iterator->next();
+            if ($iterator->valid()) {
+                yield $iterator->current();
+                $iterator->next();
+            }
         }
     }
 }
