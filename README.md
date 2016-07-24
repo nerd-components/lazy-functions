@@ -9,7 +9,7 @@ A set of functions for PHP.
 * Works with everything implementing interface \Iterator
 * Consist of:
     * Generators
-    * Еransformers
+    * Transformers
     * Reductors
 
 [Documentation](http://github.com/pldin601/php-lazy/wiki/)
