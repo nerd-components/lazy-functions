@@ -8,9 +8,9 @@ A set of functions for PHP.
 
 * Works with everything implementing interface \Iterator
 * Consist of:
-* - Generators
-* - Transformers
-* - Reductors
+    * Generators
+    * Еransformers
+    * Reductors
 
 [Documentation](http://github.com/pldin601/php-lazy/wiki/)
 
