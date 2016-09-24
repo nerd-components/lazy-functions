@@ -61,7 +61,6 @@ function produce(callable $producer, $initial = null): \Generator
 function merge(\Iterator ...$iterators): \Generator
 {
     foreach ($iterators as $iterator) {
-//        yield from $iterator;
         foreach ($iterator as $item) {
             yield $item;
         }
