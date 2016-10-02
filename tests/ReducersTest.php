@@ -2,8 +2,8 @@
 
 namespace tests;
 
-use RG\Lazy\Generators as G;
-use RG\Lazy\Reducers as R;
+use Nerd\Lazy\Generators as G;
+use Nerd\Lazy\Reducers as R;
 
 class ReducersTest extends \PHPUnit_Framework_TestCase
 {

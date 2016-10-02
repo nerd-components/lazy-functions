@@ -1,6 +1,6 @@
 <?php
 
-namespace RG\Lazy\Transformers;
+namespace Nerd\Lazy\Transformers;
 
 /**
  * Applies the function to the elements of the given iterator.
@@ -11,7 +11,7 @@ namespace RG\Lazy\Transformers;
  *
  * @return \Generator
  */
-function map(callable $func, \Iterator $source): \Generator
+function map(callable $func, \Iterator $source)
 {
     foreach ($source as $i => $item) {
         yield $func($item, $i, $source);
@@ -27,7 +27,7 @@ function map(callable $func, \Iterator $source): \Generator
  *
  * @return \Generator
  */
-function filter(callable $func, \Iterator $source): \Generator
+function filter(callable $func, \Iterator $source)
 {
     foreach ($source as $i => $item) {
         if ($func($item, $i, $source)) {
@@ -45,7 +45,7 @@ function filter(callable $func, \Iterator $source): \Generator
  *
  * @return \Generator
  */
-function reject(callable $func, \Iterator $source): \Generator
+function reject(callable $func, \Iterator $source)
 {
     foreach ($source as $i => $item) {
         if (!$func($item, $i, $source)) {
@@ -63,7 +63,7 @@ function reject(callable $func, \Iterator $source): \Generator
  *
  * @return \Generator
  */
-function take(int $amount, \Iterator $source): \Generator
+function take($amount, \Iterator $source)
 {
     foreach ($source as $item) {
         if ($amount <= 0) {
@@ -84,7 +84,7 @@ function take(int $amount, \Iterator $source): \Generator
  *
  * @return \Generator
  */
-function skip(int $amount, \Iterator $source): \Generator
+function skip($amount, \Iterator $source)
 {
     foreach ($source as $item) {
         if ($amount > 0) {
@@ -103,7 +103,7 @@ function skip(int $amount, \Iterator $source): \Generator
  *
  * @return \Generator
  */
-function tail(\Iterator $source): \Generator
+function tail(\Iterator $source)
 {
     return skip(1, $source);
 }
@@ -121,7 +121,7 @@ function tail(\Iterator $source): \Generator
  *
  * @return \Generator
  */
-function zipWith(callable $with, \Iterator $source1, \Iterator $source2): \Generator
+function zipWith(callable $with, \Iterator $source1, \Iterator $source2)
 {
     while ($source1->valid() || $source2->valid()) {
         yield $with($source1->current(), $source2->current());
@@ -141,7 +141,7 @@ function zipWith(callable $with, \Iterator $source1, \Iterator $source2): \Gener
  *
  * @return \Generator
  */
-function zip(\Iterator $source1, \Iterator $source2): \Generator
+function zip(\Iterator $source1, \Iterator $source2)
 {
     $with = function ($a, $b) {
         return [$a, $b];

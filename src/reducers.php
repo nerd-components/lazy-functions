@@ -51,7 +51,7 @@ function consume(callable $consumer, \Iterator $source)
  *
  * @return array Resulting array.
  */
-function toArray(\Iterator $source): array
+function toArray(\Iterator $source)
 {
     return iterator_to_array($source);
 }
@@ -63,7 +63,7 @@ function toArray(\Iterator $source): array
  *
  * @return string Resulting string.
  */
-function toString(\Iterator $source): string
+function toString(\Iterator $source)
 {
     $str = '(';
 

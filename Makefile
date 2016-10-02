@@ -10,11 +10,5 @@ autoload:
 test:
 	composer exec phpunit -- --color tests
 
-report:
-	composer exec test-reporter
-
 lint:
 	composer exec 'phpcs --standard=PSR2 src tests'
-
-doc:
-	composer exec phpdoc
