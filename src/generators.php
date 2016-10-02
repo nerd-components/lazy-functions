@@ -1,6 +1,6 @@
 <?php
 
-namespace RG\Lazy\Generators;
+namespace Nerd\Lazy\Generators;
 
 use function RG\Arrays\array_some;
 
@@ -20,7 +20,7 @@ const STREAM_BUFFER_SIZE = 4096;
  * @return \Generator
  * @throws \InvalidArgumentException
  */
-function range(int $start, int $end, int $step = 1): \Generator
+function range($start, $end, $step = 1)
 {
     if ($step < 0) {
         throw new \InvalidArgumentException("Step could not be negative.");
@@ -43,7 +43,7 @@ function range(int $start, int $end, int $step = 1): \Generator
  *
  * @return \Generator
  */
-function produce(callable $producer, $initial = null): \Generator
+function produce(callable $producer, $initial = null)
 {
     while (!is_null($initial = $producer($initial))) {
         yield $initial;
@@ -58,7 +58,7 @@ function produce(callable $producer, $initial = null): \Generator
  *
  * @return \Generator
  */
-function merge(\Iterator ...$iterators): \Generator
+function merge(\Iterator ...$iterators)
 {
     foreach ($iterators as $iterator) {
         foreach ($iterator as $item) {
@@ -71,13 +71,22 @@ function merge(\Iterator ...$iterators): \Generator
  * @param \Iterator[] ...$iterators
  * @return \Generator
  */
-function interlace(\Iterator ...$iterators): \Generator
+function interlace(\Iterator ...$iterators)
 {
     $isIteratorValid = function (\Iterator $iterator) {
         return $iterator->valid();
     };
 
-    while (array_some($iterators, $isIteratorValid)) {
+    $someValid = function ($iterators) use ($isIteratorValid) {
+        foreach ($iterators as $iterator) {
+            if ($isIteratorValid($iterator)) {
+                return true;
+            }
+        }
+        return false;
+    };
+
+    while ($someValid($iterators)) {
         foreach ($iterators as $iterator) {
             if ($iterator->valid()) {
                 yield $iterator->current();
@@ -96,7 +105,7 @@ function interlace(\Iterator ...$iterators): \Generator
  *
  * @return \Generator
  */
-function stream($fh, $buffer = STREAM_BUFFER_SIZE): \Generator
+function stream($fh, $buffer = STREAM_BUFFER_SIZE)
 {
     while ($data = fread($fh, $buffer)) {
         yield $data;
@@ -112,7 +121,7 @@ function stream($fh, $buffer = STREAM_BUFFER_SIZE): \Generator
  *
  * @return \Generator
  */
-function lines($fh): \Generator
+function lines($fh)
 {
     while ($line = fgets($fh)) {
         yield rtrim($line);

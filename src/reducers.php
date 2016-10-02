@@ -1,6 +1,6 @@
 <?php
 
-namespace RG\Lazy\Reducers;
+namespace Nerd\Lazy\Reducers;
 
 /**
  * Applies a function against an accumulator and each value of
