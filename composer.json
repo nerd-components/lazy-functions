@@ -11,9 +11,9 @@
   ],
   "autoload": {
     "files": [
-      "src/generators.php",
-      "src/transformers.php",
-      "src/reducers.php"
+      "src/Generators.php",
+      "src/Transformers.php",
+      "src/Reducers.php"
     ],
     "psr-4": {
       "Tests\\": "tests"

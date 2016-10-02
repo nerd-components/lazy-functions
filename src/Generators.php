@@ -2,8 +2,6 @@
 
 namespace Nerd\Lazy\Generators;
 
-use function RG\Arrays\array_some;
-
 const STREAM_BUFFER_SIZE = 4096;
 
 /**
